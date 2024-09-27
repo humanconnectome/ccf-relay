@@ -7,6 +7,11 @@
     crypt_name: data
 
   tasks:
+  - name: Create a directory if it does not exist - /data
+    ansible.builtin.file:
+      path: /data
+      state: directory
+      mode: '0755'
   - name: block for doing basic setup and verification for target system
     block:
     - name: get facts for "{{ target_device }}"
@@ -83,15 +88,14 @@
         fstype: ext4
         dev: "/dev/mapper/{{ crypt_name }}"
 
-
-#  - name: mount device
-#    mount:
-#      path: /data
-#      src: "/dev/mapper/{{ crypt_name }}"
-#      state: mounted
-#      fstype: ext4
-#      boot: no
-#
+    - name: mount device
+      mount:
+        path: /data
+        src: "/dev/mapper/{{ crypt_name }}"
+        state: mounted
+        fstype: ext4
+        boot: no
+ 
 #  - name: put some content in my new filesystem
 #    copy:
 #      content: "Hello secure world!"
