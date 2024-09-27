@@ -138,9 +138,9 @@
       repo: https://github.com/humanconnectome/xnat-docker-compose-ccfrelay.git
       dest: /data/docker/xnat-docker-compose-ccfrelay
       single_branch: yes
-      #version: master
+      version: master
       # For relay-specific branch
-      version: ubuntu2404_build
+      #version: ubuntu2404_build
       depth: 1
       force: yes
 
