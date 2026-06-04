@@ -360,9 +360,12 @@
       mode: preserve
       remote_src: no
 
+  #- name: Set timezone
+  #  ansible.builtin.shell:
+  #    cmd: timedatectl set-timezone "`curl --fail https://ipapi.co/timezone`"
   - name: Set timezone
-    ansible.builtin.shell:
-      cmd: timedatectl set-timezone "`curl --fail https://ipapi.co/timezone`"
+    ansible.builtin.command: timedatectl set-timezone America/Chicago
+    changed_when: false
 
   - name: Setup reboot cron 
     ansible.builtin.cron:
